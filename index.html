@@ -3,51 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
+    <title>Currency Exchange — Premium Converter</title>
+    <meta name="description" content="A sleek, premium currency converter with real-time exchange rates. Convert between 150+ currencies instantly.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="media.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
 </head>
 <body>
+    <!-- Animated background orbs -->
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+
     <section class="main">
         <div class="container">
-            <h2>Currency Converter</h2>
+            <!-- Header -->
+            <div class="card-header">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <div>
+                    <h1>Currency Exchange</h1>
+                    <p class="subtitle">Real-time rates • 150+ currencies</p>
+                </div>
+            </div>
+
             <form>
+                <!-- Amount Input -->
                 <div class="inp">
-                    <p>Enter amount</p>
-                    <input class="EntrAmt" type="number" value="1">
+                    <label for="amount-input">Enter Amount</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon"><i class="fa-solid fa-wallet"></i></span>
+                        <input id="amount-input" class="EntrAmt" type="number" value="1" min="0" placeholder="0.00">
+                    </div>
                 </div>
+
+                <!-- Currency Selectors -->
                 <div class="dropdown">
-                    <div class="from">
-                        <p>From</p>
+                    <div class="from currency-card">
+                        <p class="currency-label">From</p>
                         <div class="select-cont">
-                            <img class="Flag" src="https://flagsapi.com/US/flat/64.png" >
-                            <select name="from"></select>
+                            <img class="Flag" src="https://flagsapi.com/US/flat/64.png" alt="From flag">
+                            <select name="from" aria-label="From currency"></select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
                         </div>
-
                     </div>
 
-                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <button type="button" class="swap-btn" id="swap-btn" title="Swap currencies">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </button>
 
-                    <div class="to">
-                        <p>To</p>
+                    <div class="to currency-card">
+                        <p class="currency-label">To</p>
                         <div class="select-cont">
-                            <img class="Flag" src="https://flagsapi.com/IN/flat/64.png" >
-                            <select name="to"></select>
+                            <img class="Flag" src="https://flagsapi.com/IN/flat/64.png" alt="To flag">
+                            <select name="to" aria-label="To currency"></select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
                         </div>
                     </div>
                 </div>
-                <div class="msg">1 USD=80 INR</div>
-                <button class="btn">Get Exchange rate</button>
+
+                <!-- Result -->
+                <div class="result-box">
+                    <div class="msg">1 USD = 80 INR</div>
+                </div>
+
+                <!-- Button -->
+                <button class="btn" type="submit">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Get Exchange Rate</span>
+                </button>
             </form>
         </div>
     </section>
+
     <footer>
         <div class="footer">
-            <P>&#169; Developed By <a href="https://github.com/CodeWithHuzaiff"><b>Mohammad Huzaif</b></a></P>
+            <p>&#169; Developed By <a href="https://github.com/CodeWithHuzaiff"><b>Mohammad Huzaif</b></a></p>
         </div>
     </footer>
+
     <script src="codes.js"></script>
     <script src="app.js"></script>
 </body>

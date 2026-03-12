@@ -41,22 +41,37 @@ const updateFlag=(ele)=>{
 button.addEventListener("click",(evt)=>{
     evt.preventDefault();
     updateExchangeRate();
-
-
 });
 
-const updateExchangeRate = async  () => {
+// Swap button functionality
+let swapBtn = document.getElementById("swap-btn");
+if (swapBtn) {
+    swapBtn.addEventListener("click", () => {
+        let tempVal = fromCurr.value;
+        fromCurr.value = toCurr.value;
+        toCurr.value = tempVal;
+        updateFlag(fromCurr);
+        updateFlag(toCurr);
+        updateExchangeRate();
+    });
+}
+
+const updateExchangeRate = async () => {
     let Amount=document.querySelector(".EntrAmt");
     let Amtval=Amount.value;
     if(Amtval==="" || Amtval<1){
         Amtval=1;
         Amount.value="1";
     }
-    url=`${Base_url}/${fromCurr.value}?target=${toCurr.value}`
-    let response=await fetch(url);
-    let result = await response.json();
-    let rate =result.data.mid;
-    let finalAmount=Amtval*rate;
-    msg.innerText=`${Amtval} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+    msg.innerText = "Converting...";
+    try {
+        url=`${Base_url}/${fromCurr.value}?target=${toCurr.value}`
+        let response=await fetch(url);
+        let result = await response.json();
+        let rate =result.data.mid;
+        let finalAmount=(Amtval*rate).toFixed(2);
+        msg.innerText=`${Amtval} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+    } catch (err) {
+        msg.innerText = "Failed to fetch rate. Try again.";
+    }
 }
-
